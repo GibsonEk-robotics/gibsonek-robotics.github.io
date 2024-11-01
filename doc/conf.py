@@ -6,9 +6,9 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Example'
-copyright = 'workshop participant'
-author = 'workshop participant'
+project = 'Gibson Ek Robotics Software Documentation'
+copyright = '%Y, Gibson Ek Robotics Club'
+author = 'Gibson Ek Robotics Club'
 release = '0.1'
 
 
