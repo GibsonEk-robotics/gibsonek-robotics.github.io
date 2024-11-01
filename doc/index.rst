@@ -1,14 +1,14 @@
-.. Example documentation master file, created by
-   sphinx-quickstart on Sat Sep 23 20:35:12 2023.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+.. This is our table of contents. Add your new documentation sections in here for them to show up on the website.
 
-Welcome to Example's documentation!
+Welcome to the Gibson Ek Robotics Club documentation!
+
+Can you add multiple lines to this?
+
 ===================================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   some-feature.md
-   another-feature.md
+   src/some-feature.md
+   src/another-feature.md
