@@ -1,6 +1,6 @@
 .. This is our table of contents. Add your new documentation sections in here for them to show up on the website.
 
-Gibson Ek Robotics Club documentation
+Gibson Ek Robotics Club Documentation
 ===================================
 
 .. toctree::
@@ -8,5 +8,5 @@ Gibson Ek Robotics Club documentation
    :caption: Contents:
 
    src/functions
-   src/documentation
+   ./../documentation
 
