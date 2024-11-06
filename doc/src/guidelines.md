@@ -50,10 +50,12 @@ All code in the main.py file must be inside a Try Except to prevent damage to th
 
 Any function that uses the nav variabel (ie. interacts directly with the robot) must have nav as the first argument. 
 
-Good: ```python
+Good: 
+```python
 robotForward(**nav**, speed, direction, time)
 ```  
-Bad: ```python
+Bad: 
+```python
 robotForward(speed, **nav**, direction, time)
 ```
 
