@@ -8,5 +8,7 @@ Gibson Ek Robotics Club Documentation
    :caption: Contents:
 
    src/functions
+   src/guidelines
    src/documentation
+
 
