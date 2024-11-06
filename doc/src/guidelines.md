@@ -25,7 +25,7 @@ Bad: ```compassMovement```
 
 Use camelCase for naming variables, files, functions etc. With camelCase you don't capitalize the first word but the first letter of every subsequent word is capitalized.
 
-Good: ```compassMovementLib ``` 
+Good: ```compassMovementLib``` 
 Bad: ```compassmovementlib```  
 Bad: ```CompassMovementLib```  
 Bad: ```Compassmovementlib```
