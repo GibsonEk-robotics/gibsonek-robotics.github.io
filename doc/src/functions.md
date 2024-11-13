@@ -20,6 +20,14 @@ Some simple functions for making movement and data collection simple using the b
 - Channel 7: Top back right, Counterclockwise
 - Channel 8: Top back left, Clockwise
 
+## compassMovement
+
+This was supposed to use the magnetic field sensors built into the bluerobotics navigator to move in a staight line, correcting for drift. However, we don't currently have a thorough enough understanding of how the sensor is oriented/calibrated to make this work. Potential project if anyone is interested.
+
+## gpsMovementLib
+
+This would hypothetically make the robot move towards a target GPS coordinate, but since the robot cannot get a gps signal underwater, it doesn't work. Do not use this library unless you have an "underwater gps."
+
 ## ScanRotationLib
 
 NOT fire and forget. Makes the robot yaw for a specified amount of time, then pause for a specified amount of time. It will run through that loop a specified number of times before exiting. sensorsLogLib is built into the function. The parameters (nav, runtimes = 3, ScanDect = True, turnTime = 0.9, turnSpeed = 0.175 waitTime = 1) reliably made the robot turn 90 degrees to the right in 2024.
