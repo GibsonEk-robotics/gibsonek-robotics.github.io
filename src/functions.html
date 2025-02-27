@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Functions in libraries &mdash; Gibson Ek Robotics Software Documentation 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=2709fde1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Code guidelines" href="guidelines.html" />
+    <link rel="prev" title="Gibson Ek Robotics Club Documentation" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Gibson Ek Robotics Software Documentation
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Functions in libraries</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#motor-configuration">Motor Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#compassmovement">compassMovement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpsmovementlib">gpsMovementLib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#scanrotationlib">ScanRotationLib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xmovementlib">xMovementLib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zdepthlib">zDepthLib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zhoverlib">zHoverLib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rollrotationlib">rollrotationLib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#yawrotationlib">yawRotationLib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sensorsloglib">sensorsLogLib</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guidelines.html">Code guidelines</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Contributing to this documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Gibson Ek Robotics Software Documentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Functions in libraries</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/src/functions.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="functions-in-libraries">
+<h1>Functions in libraries<a class="headerlink" href="#functions-in-libraries" title="Link to this heading"></a></h1>
+<p>Some simple functions for making movement and data collection simple using the bluerobotics_navigator library. <strong>We use version 0.0.6.</strong> This makes it easy to employ a “fire and forget” operation, while collecting sensor data along the way.</p>
+<blockquote>
+<div><p><strong><em>NOTE:</em></strong>
+For every single function you <em><strong>MUST</strong></em> set the bluerobotics_navigator as the first parameter.
+The bluerobotics_navigator library should only be imported in the main code you’re running</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong><em>NOTE:</em></strong>
+The motors will keep running until either one of the two conditions below are fulfilled:</p>
+<ul class="simple">
+<li><p>The speed is set to 0</p></li>
+<li><p>motors are reset</p></li>
+</ul>
+</div></blockquote>
+<section id="motor-configuration">
+<h2>Motor Configuration<a class="headerlink" href="#motor-configuration" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Channel 1: Underside front right, Clockwise</p></li>
+<li><p>Channel 2: Underside front left, Clockwise</p></li>
+<li><p>Channel 3: Underside back right, Clockwise</p></li>
+<li><p>Channel 4: Underside back left, Counterclockwise</p></li>
+<li><p>Channel 5: Top front right, Clockwise</p></li>
+<li><p>Channel 6: Top front left, Counterclockwise</p></li>
+<li><p>Channel 7: Top back right, Counterclockwise</p></li>
+<li><p>Channel 8: Top back left, Clockwise</p></li>
+</ul>
+</section>
+<section id="compassmovement">
+<h2>compassMovement<a class="headerlink" href="#compassmovement" title="Link to this heading"></a></h2>
+<p>This was supposed to use the magnetic field sensors built into the bluerobotics navigator to move in a staight line, correcting for drift. However, we don’t currently have a thorough enough understanding of how the sensor is oriented/calibrated to make this work. Potential project if anyone is interested.</p>
+</section>
+<section id="gpsmovementlib">
+<h2>gpsMovementLib<a class="headerlink" href="#gpsmovementlib" title="Link to this heading"></a></h2>
+<p>This would hypothetically make the robot move towards a target GPS coordinate, but since the robot cannot get a gps signal underwater, it doesn’t work. Do not use this library unless you have an “underwater gps.”</p>
+</section>
+<section id="scanrotationlib">
+<h2>ScanRotationLib<a class="headerlink" href="#scanrotationlib" title="Link to this heading"></a></h2>
+<p>NOT fire and forget. Makes the robot yaw for a specified amount of time, then pause for a specified amount of time. It will run through that loop a specified number of times before exiting. sensorsLogLib is built into the function. The parameters (nav, runtimes = 3, ScanDect = True, turnTime = 0.9, turnSpeed = 0.175 waitTime = 1) reliably made the robot turn 90 degrees to the right in 2024.</p>
+<p>scanRotation defaults in order.</p>
+<ul>
+<li><p>nav has no default</p></li>
+<li><p>runtimes = 10 #The number of times that the robot runs through the rotate-pause loop before exiting</p></li>
+<li><p>ScanDect = True #The direction on the X-axis that the robot rotates. True is right, False is left.</p></li>
+<li><p>turnTime = 0.9 #The amount of time in seconds that the robot rotates for each loop</p></li>
+<li><p>turnSpeed = 0.175 #This sets the speed of the motors. The speed value is a percentage, where 0.00 = 0% and 1.00 = 100%.</p></li>
+<li><p>waitTime = 1 #The amount of time in seconds that the robot pauses with the motors off each loop.</p>
+<p>Here is an example of scanRotation in use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">libraries.ScanRotationLib</span>
+<span class="n">libraries</span><span class="o">.</span><span class="n">ScanRotationLib</span><span class="o">.</span><span class="n">scanRotation</span><span class="p">(</span><span class="n">nav</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.175</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="xmovementlib">
+<h2>xMovementLib<a class="headerlink" href="#xmovementlib" title="Link to this heading"></a></h2>
+<p>Fire and forget. Makes the robot move horizontally.</p>
+<p>horizontalMovement defaults in order:</p>
+<ul class="simple">
+<li><p>nav has no default</p></li>
+<li><p>horizontalDect = True #This controls the movement of the robot on the X axis. True is fowards and False is backwards.</p></li>
+<li><p>horizontalSpeed = 0 #This sets the speed of the motors. The speed value is a percentage, where 0.00 = 0% and 1.00 = 100%.</p></li>
+</ul>
+<p>Here is an example of horizontalMovement in use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">libraries.HorizontalMovementLib</span>
+<span class="n">libraries</span><span class="o">.</span><span class="n">HorizontalMovementLib</span><span class="o">.</span><span class="n">horizontalMovement</span><span class="p">(</span><span class="n">nav</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="zdepthlib">
+<h2>zDepthLib<a class="headerlink" href="#zdepthlib" title="Link to this heading"></a></h2>
+<p>Fire and forget. Makes the robot move vertically.</p>
+<p>verticalMovement defaults in order:</p>
+<ul class="simple">
+<li><p>verticalDect = True #This controls the Z axis. True is down, False is up.</p></li>
+<li><p>verticalSpeed = 0.2 #This sets the speed of the motors. The speed value is a percentage, where 0.00 = 0% and 1.00 = 100%.</p></li>
+</ul>
+<p>Here is an example of verticalMovement in use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">libraries.verticalMovementLib</span>
+<span class="n">libraries</span><span class="o">.</span><span class="n">verticalMovementLib</span><span class="o">.</span><span class="n">verticalMovement</span><span class="p">(</span><span class="n">nav</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="zhoverlib">
+<h2>zHoverLib<a class="headerlink" href="#zhoverlib" title="Link to this heading"></a></h2>
+<p>Fire and forget. Same as vertical movement, but with a default motor speed calculated to maintain depth.</p>
+<p>HoverMovement defaults in order:</p>
+<ul class="simple">
+<li><p>nav has no default</p></li>
+<li><p>hoverDect = True #This controls the movement of the robot on the Y axis. True is down and False is up. Because the robot is positively buoyant, this should be set to True.</p></li>
+<li><p>hoverSpeed = 0.15 #This sets the speed of the motors when holding. The speed value is a percentage, where 0.00 = 0% and 1.00 = 100%. 0.15 is the speed that currently maintains depth, but this will need to be changed if the robot’s buoyancy changes.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">libraries.hoverMovementLib</span>
+<span class="n">libraries</span><span class="o">.</span><span class="n">hoverMovementLib</span><span class="o">.</span><span class="n">hoverMovement</span><span class="p">(</span><span class="n">nav</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="rollrotationlib">
+<h2>rollrotationLib<a class="headerlink" href="#rollrotationlib" title="Link to this heading"></a></h2>
+<p>Fire and forget. Makes the robot roll. sensorsLog for 4.5 seconds will roll 2 times (720 degrees). Note that hover will have to be called again afterwards.</p>
+<p>rollMovement defaults in order</p>
+<ul class="simple">
+<li><p>nav has no defaults</p></li>
+<li><p>rollDect = True #This now controls the X rotational axis. TRUE is right, FALSE is left.</p></li>
+<li><p>rollSpeed = 0.35 #This sets the speed of the motors. The speed value is a percentage, where 0.00 = 0% and 1.00 = 100%.</p></li>
+</ul>
+<p>Here is an example of rollMovement in use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">libraries.rollMovementLib</span>
+<span class="n">libraries</span><span class="o">.</span><span class="n">rollMovementLib</span><span class="o">.</span><span class="n">rollMovement</span><span class="p">(</span><span class="n">nav</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="yawrotationlib">
+<h2>yawRotationLib<a class="headerlink" href="#yawrotationlib" title="Link to this heading"></a></h2>
+<p>Fire and forget. Makes the robot rotate horizontally.</p>
+<p>rotationMovement defaults in order:</p>
+<ul class="simple">
+<li><p>nav has no defaults</p></li>
+<li><p>rotationSpeed = 0 #This sets the speed of the motors. The speed value is a percentage, where 0.00 = 0% and 1.00 = 100%.</p></li>
+<li><p>rotationDect = True #This controls the Z rotational axes. True is right, False is left.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">libraries.yawRotationLib.rotationMovement</span>
+<span class="n">libraries</span><span class="o">.</span><span class="n">yawRotationLib</span><span class="o">.</span><span class="n">rotationMovement</span><span class="p">(</span><span class="n">nav</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="sensorsloglib">
+<h2>sensorsLogLib<a class="headerlink" href="#sensorsloglib" title="Link to this heading"></a></h2>
+<p>NOT fire and forget. Logs acceleration, gyroscope, and magnetic field on 3 axis. Use in place of time.sleep for fire and forget commands. Outputs to a .csv file.</p>
+<p>sensorsLogLib defaults in order:</p>
+<ul class="simple">
+<li><p>nav has no defaults</p></li>
+<li><p>init?</p></li>
+<li><p>message has no defaults #A message written into the csv file. Describe what the robot is doing to help interpret the data</p></li>
+<li><p>sensorLogTime = 5.0 #Time in seconds sensors log for. Logs 10 times per second.</p></li>
+</ul>
+<p>Here is an example of sensorsLog in use:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">libraries.sensorsLogLib</span>
+<span class="n">libraries</span><span class="o">.</span><span class="n">sensorsLogLib</span><span class="o">.</span><span class="n">sensorsLog</span><span class="p">(</span><span class="n">nav</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Gibson Ek Robotics Club Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="guidelines.html" class="btn btn-neutral float-right" title="Code guidelines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Gibson Ek Robotics Club.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
