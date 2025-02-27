@@ -1,5 +1,5 @@
 # Functions in libraries
-Some simple functions for making movement and data collection simple using the bluerobotics_navigator library. This makes it easy to employ a "fire and forget" operation, while collecting sensor data along the way.
+Some simple functions for making movement and data collection simple using the bluerobotics_navigator library. **We use version 0.0.6.** This makes it easy to employ a "fire and forget" operation, while collecting sensor data along the way.
 
 > **_NOTE:_**
 > For every single function you ***MUST*** set the bluerobotics_navigator as the first parameter.
